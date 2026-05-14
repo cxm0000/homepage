@@ -24,7 +24,12 @@ jobs:
           node-version: '20'
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - name: Build
+        run: npm run build
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          # Optional repo Variable `PUBLIC_SITE_URL` (no trailing slash), e.g. https://org.github.io/homepage — enables canonical + og:image in static HTML
+          VITE_SITE_URL: ${{ vars.PUBLIC_SITE_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
