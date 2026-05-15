@@ -32,11 +32,14 @@ export function HeroSection() {
                 Book a demo
               </Button>
             </div>
-            <div className="mt-10 flex flex-col gap-3 text-sm font-medium text-ow-text-muted sm:flex-row sm:flex-wrap sm:items-center sm:gap-0 sm:divide-x sm:divide-ow-border">
-              <span className="sm:pr-6">Built for Swedish companies</span>
-              <span className="sm:px-6">Secure and compliant by design</span>
-              <span className="sm:pl-6">Loved by companies and employees</span>
-            </div>
+            <ul
+              className="mt-10 m-0 grid list-none grid-cols-1 divide-y divide-ow-border p-0 text-left text-sm font-medium leading-snug text-ow-text-muted sm:grid-cols-3 sm:divide-x sm:divide-y-0"
+              aria-label="Trust highlights"
+            >
+              <li className="py-3 sm:px-4 sm:py-4 md:px-6">Built for Swedish companies</li>
+              <li className="py-3 sm:px-4 sm:py-4 md:px-6">Secure and compliant by design</li>
+              <li className="py-3 sm:px-4 sm:py-4 md:px-6">Loved by companies and employees</li>
+            </ul>
           </div>
           <div className="min-w-0">
             <HeroDashboardImage />

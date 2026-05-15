@@ -14,6 +14,9 @@ const navLinks = [
   { label: 'About Us', href: hash(SECTION_IDS.aboutCompany) },
 ] as const;
 
+const navLinkClass =
+  'whitespace-nowrap rounded-md px-1.5 py-2 text-[0.8125rem] font-semibold leading-none text-ow-text-muted transition hover:text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2 xl:text-sm';
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const panelId = useId();
@@ -29,67 +32,72 @@ export function SiteHeader() {
         setOpen(false);
       }
     };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-transparent bg-white/90 backdrop-blur-md transition-colors supports-[backdrop-filter]:bg-white/80">
-      <Container className="relative flex h-[72px] items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 border-b border-ow-border bg-white/95 shadow-[0_1px_0_rgba(15,23,42,0.04)] supports-[backdrop-filter]:bg-white/90 supports-[backdrop-filter]:backdrop-blur-sm">
+      <Container className="flex h-[72px] items-center justify-between gap-3 sm:gap-4 lg:gap-6">
         <a
           href="/"
-          className="flex shrink-0 items-center gap-2 rounded-lg text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2"
+          className="flex min-w-0 shrink-0 items-center gap-2 rounded-lg text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ow-primary text-sm font-bold text-white">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ow-primary text-sm font-bold text-white">
             OW
           </span>
-          <span className="text-lg font-bold tracking-tight">OptionWise</span>
+          <span className="truncate text-lg font-bold tracking-tight">OptionWise</span>
         </a>
 
         <nav
-          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex"
+          className="hidden min-w-0 flex-1 justify-center overflow-x-auto overflow-y-visible px-1 [scrollbar-width:none] lg:flex [&::-webkit-scrollbar]:hidden"
           aria-label="Primary"
         >
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-sm font-semibold text-ow-text-muted transition hover:text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2 rounded"
-            >
-              {link.label}
-            </a>
-          ))}
+          <ul className="mx-auto flex max-w-max flex-nowrap items-center gap-x-2 xl:gap-x-4 2xl:gap-x-6">
+            {navLinks.map((link) => (
+              <li key={link.label} className="shrink-0">
+                <a href={link.href} className={navLinkClass}>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-4 lg:flex">
+        <div className="hidden shrink-0 items-center gap-3 lg:flex lg:gap-4">
           {appUrl ? (
             <a
               href={appUrl}
-              className="text-sm font-semibold text-ow-text-muted transition hover:text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2 rounded px-1"
+              className="whitespace-nowrap text-sm font-semibold text-ow-text-muted transition hover:text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2 rounded-md px-1 py-2"
             >
               Log in
             </a>
           ) : (
             <a
               href={hash(SECTION_IDS.contact)}
-              className="text-sm font-semibold text-ow-text-muted transition hover:text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2 rounded px-1"
+              className="whitespace-nowrap text-sm font-semibold text-ow-text-muted transition hover:text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2 rounded-md px-1 py-2"
             >
               Log in
             </a>
           )}
-          <Button href={bookDemoUrl} variant="primary" className="!py-3">
+          <Button href={bookDemoUrl} variant="primary" className="shrink-0 !py-2.5 !text-sm">
             Book a demo
           </Button>
         </div>
 
-        <div className="flex items-center gap-2 lg:hidden">
-          <Button href={bookDemoUrl} variant="primary" className="!px-4 !py-2.5 text-sm">
+        <div className="flex shrink-0 items-center gap-2 lg:hidden">
+          <Button href={bookDemoUrl} variant="secondary" className="!px-4 !py-2.5 text-sm">
             Book a demo
           </Button>
           <button
             type="button"
             className={cn(
-              'inline-flex h-11 w-11 items-center justify-center rounded-xl border border-ow-border bg-ow-surface text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2',
+              'inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-ow-border bg-ow-surface text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2',
             )}
             aria-expanded={open}
             aria-controls={panelId}
@@ -108,7 +116,6 @@ export function SiteHeader() {
         </div>
       </Container>
 
-      {/* Mobile panel */}
       <div
         id={panelId}
         className={cn(

@@ -4,16 +4,45 @@ import { resolveAppStoreUrl, resolvePlayStoreUrl } from '../../content/site';
 
 const base = import.meta.env.BASE_URL;
 const APP_STORE_BADGE = `${base}badges/download-on-the-app-store.svg`;
-const GOOGLE_PLAY_BADGE = `${base}badges/google-play-badge.png`;
+/** English “Get it on Google Play” vector (viewBox 239×70.9); matches Apple badge as SVG for consistent scaling. */
+const GOOGLE_PLAY_BADGE = `${base}badges/google-play-badge.svg`;
 
 const focusRing =
   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2 rounded-md';
 
+/** Equal-width columns: one row, no wrap (flex-wrap was stacking badges in narrow cards). */
+const badgeRowClass = 'grid w-full grid-cols-2 gap-x-3 items-center';
+
+const badgeSlotHeight = {
+  hero: 'h-10 sm:h-11',
+  compact: 'h-9 sm:h-10',
+} as const;
+
 type StoreBadgesProps = {
   className?: string;
-  /** Hero row uses slightly larger badges; platform card uses compact. */
   variant?: 'hero' | 'compact';
 };
+
+type BadgeImgProps = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
+function BadgeImage({ src, alt, width, height }: BadgeImgProps) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      className="h-full w-full min-h-0 min-w-0 object-contain object-center"
+      loading="lazy"
+      decoding="async"
+    />
+  );
+}
 
 export function StoreBadges({ className, variant = 'hero' }: StoreBadgesProps) {
   const appStore = resolveAppStoreUrl();
@@ -21,32 +50,19 @@ export function StoreBadges({ className, variant = 'hero' }: StoreBadgesProps) {
   const useContactFallback = !appStore && !playStore;
   const contactHref = hash(SECTION_IDS.contact);
 
-  const appleClass = variant === 'hero' ? 'h-10 w-auto sm:h-11' : 'h-9 w-auto sm:h-10';
-  const playClass =
-    variant === 'hero' ? 'h-[3.35rem] w-auto sm:h-[3.75rem]' : 'h-[2.85rem] w-auto sm:h-[3.1rem]';
+  const h = badgeSlotHeight[variant];
 
-  const appleImg = (
-    <img
-      src={APP_STORE_BADGE}
-      alt="Download on the App Store"
-      width={120}
-      height={40}
-      className={cn('w-auto', appleClass)}
-      loading="lazy"
-      decoding="async"
-    />
+  const slotClass = cn(
+    'flex w-full min-w-0 items-center justify-center overflow-hidden',
+    h,
   );
 
-  const playImg = (
-    <img
-      src={GOOGLE_PLAY_BADGE}
-      alt="Get it on Google Play"
-      width={155}
-      height={60}
-      className={cn('w-auto', playClass)}
-      loading="lazy"
-      decoding="async"
-    />
+  const apple = (
+    <BadgeImage src={APP_STORE_BADGE} alt="Download on the App Store" width={120} height={40} />
+  );
+
+  const play = (
+    <BadgeImage src={GOOGLE_PLAY_BADGE} alt="Get it on Google Play" width={239} height={71} />
   );
 
   if (useContactFallback) {
@@ -54,28 +70,29 @@ export function StoreBadges({ className, variant = 'hero' }: StoreBadgesProps) {
       <a
         href={contactHref}
         className={cn(
-          'inline-flex max-w-full flex-wrap items-center gap-3 rounded-lg transition hover:opacity-95',
+          badgeRowClass,
+          'rounded-lg transition hover:opacity-95',
           focusRing,
           className,
         )}
         aria-label="Contact us for App Store and Google Play download links"
       >
-        {appleImg}
-        {playImg}
+        <span className={slotClass}>{apple}</span>
+        <span className={slotClass}>{play}</span>
       </a>
     );
   }
 
   return (
-    <div className={cn('flex max-w-full flex-wrap items-center gap-3', className)}>
+    <div className={cn(badgeRowClass, className)}>
       {appStore ? (
         <a
           href={appStore}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn('inline-flex shrink-0 transition hover:opacity-90', focusRing)}
+          className={cn(slotClass, 'transition hover:opacity-90', focusRing)}
         >
-          {appleImg}
+          {apple}
         </a>
       ) : null}
       {playStore ? (
@@ -83,9 +100,9 @@ export function StoreBadges({ className, variant = 'hero' }: StoreBadgesProps) {
           href={playStore}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn('inline-flex shrink-0 transition hover:opacity-90', focusRing)}
+          className={cn(slotClass, 'transition hover:opacity-90', focusRing)}
         >
-          {playImg}
+          {play}
         </a>
       ) : null}
     </div>
