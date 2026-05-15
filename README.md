@@ -13,7 +13,7 @@ npm run dev
 
 Copy `.env.example` to `.env` and set:
 
-- **`VITE_B2B_APP_URL`** — Full origin of the B2B web app (e.g. `https://app.example.com`). Primary CTAs use this URL. If unset, the header shows “Get started” and scrolls to the bottom section instead of a direct app link.
+- **`VITE_B2B_APP_URL`** — Overrides the default **Log in** URL (`https://optionwise.se`) in the header.
 
 ## Production build
 

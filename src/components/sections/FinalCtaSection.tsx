@@ -1,10 +1,12 @@
 import { Button } from '../ui/Button';
 import { Container } from '../ui/Container';
+import { homepageCopy } from '../../content/homepage';
 import { SECTION_IDS } from '../../content/nav';
-import { CONTACT_EMAIL, resolveBookDemoUrl } from '../../content/site';
+import { CONTACT_EMAIL, resolveBookDemoActionUrl } from '../../content/site';
 
 export function FinalCtaSection() {
-  const bookDemoUrl = resolveBookDemoUrl();
+  const bookDemoActionUrl = resolveBookDemoActionUrl();
+  const { title, body, primaryCta, emailLeadIn } = homepageCopy.finalCta;
 
   return (
     <section
@@ -18,17 +20,15 @@ export function FinalCtaSection() {
             id={`${SECTION_IDS.finalCta}-heading`}
             className="text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl"
           >
-            Ready to simplify your option program management?
+            {title}
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">
-            Book a demo and see how OptionWise can help your company, employees, and advisors.
-          </p>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">{body}</p>
           <div className="mt-10 flex flex-col items-center gap-4">
-            <Button href={bookDemoUrl} variant="onDark" className="w-full max-w-xs justify-center sm:w-auto">
-              Book a demo
+            <Button href={bookDemoActionUrl} variant="onDark" className="w-full max-w-xs justify-center sm:w-auto">
+              {primaryCta}
             </Button>
             <p className="text-sm text-white/95">
-              or email us at{' '}
+              {emailLeadIn}{' '}
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
                 className="font-semibold underline decoration-white/50 underline-offset-4 hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ow-primary-dark rounded"

@@ -1,10 +1,12 @@
 import { Button } from '../ui/Button';
 import { Container } from '../ui/Container';
 import { HeroDashboardImage } from '../marketing/HeroDashboardImage';
+import { homepageCopy } from '../../content/homepage';
 import { resolveBookDemoUrl } from '../../content/site';
 
 export function HeroSection() {
   const bookDemoUrl = resolveBookDemoUrl();
+  const { label, title, body, primaryCta, secondaryCta, secondaryCtaHref, trustPoints } = homepageCopy.hero;
 
   return (
     <section
@@ -14,31 +16,31 @@ export function HeroSection() {
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="max-w-xl lg:max-w-none">
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-ow-primary">
-              Employee stock options. Made clear.
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-ow-primary">{label}</p>
             <h1
               id="hero-heading"
               className="mt-4 text-[2.375rem] font-bold leading-[1.08] tracking-tight text-ow-text sm:text-5xl lg:text-[3.5rem] lg:leading-[1.06]"
             >
-              A clearer way to manage employee stock option programs
+              {title}
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-ow-text-muted sm:text-xl">
-              OptionWise helps companies, advisors, and employees manage option and warrant programs, follow value over
-              time, and reduce administration.
-            </p>
+            <p className="mt-6 text-lg leading-relaxed text-ow-text-muted sm:text-xl">{body}</p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Button href={bookDemoUrl} variant="primary" className="w-full justify-center sm:w-auto">
-                Book a demo
+                {primaryCta}
+              </Button>
+              <Button href={secondaryCtaHref} variant="secondary" className="w-full justify-center sm:w-auto">
+                {secondaryCta}
               </Button>
             </div>
             <ul
               className="mt-10 m-0 grid list-none grid-cols-1 divide-y divide-ow-border p-0 text-left text-sm font-medium leading-snug text-ow-text-muted sm:grid-cols-3 sm:divide-x sm:divide-y-0"
               aria-label="Trust highlights"
             >
-              <li className="py-3 sm:px-4 sm:py-4 md:px-6">Built for Swedish companies</li>
-              <li className="py-3 sm:px-4 sm:py-4 md:px-6">Secure and compliant by design</li>
-              <li className="py-3 sm:px-4 sm:py-4 md:px-6">Loved by companies and employees</li>
+              {trustPoints.map((point) => (
+                <li key={point} className="py-3 sm:px-4 sm:py-4 md:px-6">
+                  {point}
+                </li>
+              ))}
             </ul>
           </div>
           <div className="min-w-0">

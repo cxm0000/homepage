@@ -2,7 +2,6 @@ import { useEffect, useId, useState } from 'react';
 import { Button } from '../ui/Button';
 import { Container } from '../ui/Container';
 import { cn } from '../../lib/cn';
-import { SECTION_IDS, hash } from '../../content/nav';
 import { headerNavLinks, homeUrl } from '../../content/links';
 import { resolveBookDemoUrl, resolveB2BAppUrl } from '../../content/site';
 
@@ -62,21 +61,12 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden shrink-0 items-center gap-3 lg:flex lg:gap-4">
-          {appUrl ? (
-            <a
-              href={appUrl}
-              className="whitespace-nowrap text-sm font-semibold text-ow-text-muted transition hover:text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2 rounded-md px-1 py-2"
-            >
-              Log in
-            </a>
-          ) : (
-            <a
-              href={hash(SECTION_IDS.contact)}
-              className="whitespace-nowrap text-sm font-semibold text-ow-text-muted transition hover:text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2 rounded-md px-1 py-2"
-            >
-              Log in
-            </a>
-          )}
+          <a
+            href={appUrl}
+            className="whitespace-nowrap text-sm font-semibold text-ow-text-muted transition hover:text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2 rounded-md px-1 py-2"
+          >
+            Log in
+          </a>
           <Button href={bookDemoUrl} variant="primary" className="shrink-0 !py-2.5 !text-sm">
             Book a demo
           </Button>
@@ -130,23 +120,13 @@ export function SiteHeader() {
             </a>
           ))}
           <div className="mt-3 flex flex-col gap-2 border-t border-ow-border pt-4">
-            {appUrl ? (
-              <a
-                href={appUrl}
-                className="rounded-lg px-3 py-3 text-base font-semibold text-ow-primary hover:bg-ow-bg-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2"
-                onClick={() => setOpen(false)}
-              >
-                Log in
-              </a>
-            ) : (
-              <a
-                href={hash(SECTION_IDS.contact)}
-                className="rounded-lg px-3 py-3 text-base font-semibold text-ow-primary hover:bg-ow-bg-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2"
-                onClick={() => setOpen(false)}
-              >
-                Log in
-              </a>
-            )}
+            <a
+              href={appUrl}
+              className="rounded-lg px-3 py-3 text-base font-semibold text-ow-primary hover:bg-ow-bg-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2"
+              onClick={() => setOpen(false)}
+            >
+              Log in
+            </a>
           </div>
         </Container>
       </div>

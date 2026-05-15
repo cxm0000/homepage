@@ -8,7 +8,7 @@ Contact: info@tangcai.se
 ## Primary actions
 
 - Book a demo: use the "Book a demo" control on the site (mailto or calendar URL depending on deployment).
-- Log in: available when the B2B app URL is configured for the deployment.
+- Log in: https://optionwise.se (override with `VITE_B2B_APP_URL` at build time).
 - Employee app (same listings as OptionWiseB2BPlatform email templates): App Store `https://apps.apple.com/se/app/optionwise/id6747363629?l=en-GB`, Google Play `https://play.google.com/store/apps/details?id=com.optionwise.app`.
 
 ## In-page sections (anchors)
@@ -18,10 +18,8 @@ Contact: info@tangcai.se
 - #for-companies — companies card
 - #employee-app — employee app card
 - #for-advisors — advisors card
-- #demo — final call-to-action
+- #demo — final call-to-action (Book a demo)
 - #contact — contact / email block in the footer
-- #resource-links — resources column in the footer
-- #about-company — company column in the footer
 
 ## Machine-readable structured data
 

@@ -98,8 +98,8 @@ After non-trivial changes, run `npm run build` (and tests if added later).
 
 ## Environment
 
-- `VITE_B2B_APP_URL` — optional; when set, **Log in** in the header points to this URL. When unset, **Log in** links to `#contact` on the same page (`src/components/layout/SiteHeader.tsx`).
-- `VITE_BOOK_DEMO_URL` — optional; when set, **Book a demo** (header, hero, final CTA) uses this URL instead of the default `mailto:info@tangcai.se` with a demo subject (`src/content/site.ts`).
+- `VITE_B2B_APP_URL` — optional; overrides the default **Log in** URL (`https://optionwise.se`) in the header (`src/content/site.ts`, `src/components/layout/SiteHeader.tsx`).
+- `VITE_BOOK_DEMO_URL` — optional; when set, all **Book a demo** actions use this URL (e.g. calendar). When unset, header/hero/footer scroll to `#demo`; the button in the final CTA band opens `mailto:info@tangcai.se` with a demo subject (`src/content/site.ts`).
 - `VITE_SITE_URL` — optional public origin **with no trailing slash** (e.g. `https://your-org.github.io` or `https://www.example.com`). When set at **build** time, the client sets **canonical**, **og:url**, and **og:image** to absolute URLs (`src/content/seo.ts`, `src/components/SeoHead.tsx`). Omit on local dev if you do not need social previews.
 - `VITE_APP_STORE_URL` — optional; overrides the **default App Store** URL for store badges (`src/content/site.ts`; default matches `OptionWiseB2BPlatform` email templates).
 - `VITE_PLAY_STORE_URL` — optional; overrides the **default Google Play** URL for store badges (same source).

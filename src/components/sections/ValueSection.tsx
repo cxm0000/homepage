@@ -1,24 +1,17 @@
 import { Container } from '../ui/Container';
 import { SectionHeading } from '../ui/SectionHeading';
 import { homepageCopy } from '../../content/homepage';
-import { SECTION_IDS } from '../../content/nav';
 
-export function ChallengeSection() {
-  const { label, title, description, blocks } = homepageCopy.challenge;
+export function ValueSection() {
+  const { label, title, description, blocks } = homepageCopy.value;
 
   return (
     <section
-      id={SECTION_IDS.challenge}
-      className="scroll-mt-[5.5rem] border-b border-ow-border bg-ow-bg py-20 sm:py-24 lg:py-28"
-      aria-labelledby={`${SECTION_IDS.challenge}-heading`}
+      className="border-b border-ow-border bg-ow-bg py-20 sm:py-24 lg:py-28"
+      aria-labelledby="value-heading"
     >
       <Container>
-        <SectionHeading
-          id={`${SECTION_IDS.challenge}-heading`}
-          label={label}
-          title={title}
-          description={description}
-        />
+        <SectionHeading id="value-heading" label={label} title={title} description={description} />
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:gap-10">
           {blocks.map((block) => (
             <article key={block.title} className="border-t-2 border-ow-primary-soft pt-6">
