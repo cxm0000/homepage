@@ -117,7 +117,7 @@ Deploy workflow: `.github/workflows/deploy-pages.yml`. **`BASE_PATH`** (Vite `ba
 | Setup | `BASE_PATH` |
 |--------|-------------|
 | Project site only (`https://org.github.io/homepage/`) | `/homepage/` (default when no custom-domain signals) |
-| **Custom domain at site root** (e.g. `https://home.optionwise.se`) | `/` — set repo variable **`PUBLIC_SITE_URL`** to that origin (no trailing slash), or set **`BASE_PATH`** to `/` explicitly |
+| **Custom domain at site root** (e.g. `https://home.optionwise.se`) | `/` — add hostname to **`public/CNAME`** (copied into `dist/`); CI also accepts **`PUBLIC_SITE_URL`** or **`BASE_PATH`** `/` |
 | Override | Repo variable **`BASE_PATH`** (e.g. `/intro/` if proxied under a path on `optionwise.se`) |
 
 Local build for custom domain: `BASE_PATH=/ VITE_SITE_URL=https://home.optionwise.se npm run build`.

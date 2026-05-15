@@ -28,8 +28,10 @@ jobs:
         run: |
           if [ -n "${{ vars.BASE_PATH }}" ]; then
             BASE_PATH="${{ vars.BASE_PATH }}"
+          elif [ -f public/CNAME ] || [ -f CNAME ]; then
+            # Custom domain at site root (see public/CNAME) — not /repo-name/ on github.io
+            BASE_PATH="/"
           elif [ -n "${{ vars.PUBLIC_SITE_URL }}" ] && [[ "${{ vars.PUBLIC_SITE_URL }}" != *".github.io/"* ]]; then
-            # Custom domain (e.g. home.optionwise.se) serves the site at /, not /repo-name/
             BASE_PATH="/"
           else
             BASE_PATH="/${{ github.event.repository.name }}/"
@@ -48,8 +50,12 @@ jobs:
       - name: Verify production bundle
         run: |
           test -f dist/index.html
+          test -f dist/CNAME
           grep -qE 'src="[^"]*assets/' dist/index.html
           ! grep -q 'main.tsx' dist/index.html
+          if [ -f public/CNAME ]; then
+            ! grep -q '/${{ github.event.repository.name }}/' dist/index.html
+          fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
