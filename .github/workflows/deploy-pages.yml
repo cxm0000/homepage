@@ -45,6 +45,11 @@ jobs:
         env:
           # Optional repo Variable `PUBLIC_SITE_URL` (no trailing slash) — canonical + og:image; also selects `/` base for non-github.io URLs
           VITE_SITE_URL: ${{ vars.PUBLIC_SITE_URL }}
+      - name: Verify production bundle
+        run: |
+          test -f dist/index.html
+          grep -qE 'src="[^"]*assets/' dist/index.html
+          ! grep -q 'main.tsx' dist/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
