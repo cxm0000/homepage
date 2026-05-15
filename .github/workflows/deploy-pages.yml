@@ -24,11 +24,26 @@ jobs:
           node-version: '20'
           cache: npm
       - run: npm ci
+      - name: Resolve Vite base path
+        run: |
+          if [ -n "${{ vars.BASE_PATH }}" ]; then
+            BASE_PATH="${{ vars.BASE_PATH }}"
+          elif [ -n "${{ vars.PUBLIC_SITE_URL }}" ] && [[ "${{ vars.PUBLIC_SITE_URL }}" != *".github.io/"* ]]; then
+            # Custom domain (e.g. home.optionwise.se) serves the site at /, not /repo-name/
+            BASE_PATH="/"
+          else
+            BASE_PATH="/${{ github.event.repository.name }}/"
+          fi
+          case "$BASE_PATH" in
+            */) ;;
+            *) BASE_PATH="${BASE_PATH}/" ;;
+          esac
+          echo "BASE_PATH=$BASE_PATH" >> "$GITHUB_ENV"
+          echo "Using BASE_PATH=$BASE_PATH"
       - name: Build
         run: npm run build
         env:
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          # Optional repo Variable `PUBLIC_SITE_URL` (no trailing slash), e.g. https://org.github.io/homepage — enables canonical + og:image in static HTML
+          # Optional repo Variable `PUBLIC_SITE_URL` (no trailing slash) — canonical + og:image; also selects `/` base for non-github.io URLs
           VITE_SITE_URL: ${{ vars.PUBLIC_SITE_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:

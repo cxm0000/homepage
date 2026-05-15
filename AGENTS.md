@@ -112,6 +112,14 @@ After non-trivial changes, run `npm run build` (and tests if added later).
 
 ## GitHub Pages
 
-`vite.config.ts` sets `base` from `GITHUB_REPOSITORY` in CI (project repo → `/<repo>/`; `*.github.io` repo → `/`). Override with `BASE_PATH` if needed. Deploy workflow: `.github/workflows/deploy-pages.yml`.
+Deploy workflow: `.github/workflows/deploy-pages.yml`. **`BASE_PATH`** (Vite `base`) is chosen at build time:
 
-For **SEO** (canonical URL, `og:url`, `og:image` in the built `index.html` for non-JS crawlers), set a GitHub **repository variable** named **`PUBLIC_SITE_URL`** to your public origin with **no trailing slash** (for example `https://your-org.github.io/your-repo`). The workflow passes it as `VITE_SITE_URL` during `npm run build`. If unset, the site still works; only runtime `SeoHead` can add those tags when `VITE_SITE_URL` exists in a local `.env`.
+| Setup | `BASE_PATH` |
+|--------|-------------|
+| Project site only (`https://org.github.io/homepage/`) | `/homepage/` (default when no custom-domain signals) |
+| **Custom domain at site root** (e.g. `https://home.optionwise.se`) | `/` — set repo variable **`PUBLIC_SITE_URL`** to that origin (no trailing slash), or set **`BASE_PATH`** to `/` explicitly |
+| Override | Repo variable **`BASE_PATH`** (e.g. `/intro/` if proxied under a path on `optionwise.se`) |
+
+Local build for custom domain: `BASE_PATH=/ VITE_SITE_URL=https://home.optionwise.se npm run build`.
+
+For **SEO** (canonical URL, `og:url`, `og:image` in static HTML), set **`PUBLIC_SITE_URL`** as above; it is passed as `VITE_SITE_URL` during `npm run build`.
