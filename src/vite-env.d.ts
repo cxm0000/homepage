@@ -9,6 +9,7 @@ interface ImportMetaEnv {
   readonly VITE_APP_STORE_URL?: string;
   /** Google Play listing URL for the employee app (store badges). */
   readonly VITE_PLAY_STORE_URL?: string;
+  readonly VITE_LINKEDIN_URL?: string;
 }
 
 interface ImportMeta {

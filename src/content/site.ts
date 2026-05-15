@@ -23,6 +23,12 @@ export function resolveB2BAppUrl(): string | undefined {
   return raw || undefined;
 }
 
+/** Company LinkedIn profile; omit link in footer when unset. */
+export function resolveLinkedInUrl(): string | undefined {
+  const raw = import.meta.env.VITE_LINKEDIN_URL?.trim();
+  return raw || undefined;
+}
+
 /** Calendar or landing URL; falls back to mailto `CONTACT_EMAIL` with a demo subject. */
 export function resolveBookDemoUrl(): string {
   const raw = import.meta.env.VITE_BOOK_DEMO_URL?.trim();

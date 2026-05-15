@@ -3,16 +3,8 @@ import { Button } from '../ui/Button';
 import { Container } from '../ui/Container';
 import { cn } from '../../lib/cn';
 import { SECTION_IDS, hash } from '../../content/nav';
+import { headerNavLinks, homeUrl } from '../../content/links';
 import { resolveBookDemoUrl, resolveB2BAppUrl } from '../../content/site';
-
-const navLinks = [
-  { label: 'Product', href: hash(SECTION_IDS.platform) },
-  { label: 'For Companies', href: hash(SECTION_IDS.forCompanies) },
-  { label: 'For Employees', href: hash(SECTION_IDS.employeeApp) },
-  { label: 'For Advisors', href: hash(SECTION_IDS.forAdvisors) },
-  { label: 'Resources', href: hash(SECTION_IDS.resourceLinks) },
-  { label: 'About Us', href: hash(SECTION_IDS.aboutCompany) },
-] as const;
 
 const navLinkClass =
   'whitespace-nowrap rounded-md px-1.5 py-2 text-[0.8125rem] font-semibold leading-none text-ow-text-muted transition hover:text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2 xl:text-sm';
@@ -45,7 +37,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-ow-border bg-white/95 shadow-[0_1px_0_rgba(15,23,42,0.04)] supports-[backdrop-filter]:bg-white/90 supports-[backdrop-filter]:backdrop-blur-sm">
       <Container className="flex h-[72px] items-center justify-between gap-3 sm:gap-4 lg:gap-6">
         <a
-          href="/"
+          href={homeUrl()}
           className="flex min-w-0 shrink-0 items-center gap-2 rounded-lg text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2"
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ow-primary text-sm font-bold text-white">
@@ -59,7 +51,7 @@ export function SiteHeader() {
           aria-label="Primary"
         >
           <ul className="mx-auto flex max-w-max flex-nowrap items-center gap-x-2 xl:gap-x-4 2xl:gap-x-6">
-            {navLinks.map((link) => (
+            {headerNavLinks.map((link) => (
               <li key={link.label} className="shrink-0">
                 <a href={link.href} className={navLinkClass}>
                   {link.label}
@@ -127,7 +119,7 @@ export function SiteHeader() {
         aria-label="Mobile navigation"
       >
         <Container className="flex flex-col gap-1 py-4">
-          {navLinks.map((link) => (
+          {headerNavLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
