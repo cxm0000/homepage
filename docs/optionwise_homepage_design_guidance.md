@@ -716,32 +716,9 @@ Design rules:
 - Use rounded cards, subtle shadows, and clean spacing.
 - Make it fully responsive for desktop, tablet, and mobile.
 - Keep the design professional and avoid anything that looks like generic AI-generated SaaS art.
-- Optimize for SEO and AI agents: one H1, logical headings, semantic regions, meaningful link text, accurate title and meta description, key claims in visible text; optional llms.txt when maintained.
 ```
 
-## 22. SEO and AI-agent-friendly content
-
-The homepage should be easy for **search engines** and for **automated agents** (search crawlers, AI assistants, internal tools) to interpret accurately. This is a product principle, not an afterthought.
-
-### SEO (search)
-
-- Provide an **accurate `<title>` and meta description** that match the hero and primary value proposition; refine when the canonical production URL and brand messaging are final.
-- Use **one clear H1** and a **logical heading outline** (H2 for major sections, H3 for subsections) that mirrors the page structure in the navigation.
-- Prefer **semantic regions** (`header`, `nav`, `main`, `section`, `footer`) and **descriptive link text** (e.g. “Book a demo”, “See the employee app”) instead of generic “click here”.
-- Add **helpful `alt` text** for meaningful images and charts; use empty `alt=""` only for purely decorative visuals.
-- When the site has a stable public domain, set a **canonical URL** and consider **Open Graph** / **Twitter** meta tags for sharing.
-- Keep **critical claims in real text** in the HTML (not only inside images or video) so crawlers can index them.
-- **Performance and readability** (fast load, readable type) support both SEO and trust.
-
-### AI agents and machine-readable clarity
-
-- Put the **who / what / where (market)** answers in **visible, plain-language copy** early on the page so summaries stay accurate when tools parse the DOM or excerpts.
-- Use **stable `id` attributes or anchors** on major sections where it helps deep links and citations (e.g. `#platform`, `#challenge`).
-- Avoid relying on **client-only tricks** for the only description of the product (e.g. critical text only in canvas, unreadable overlays, or unlabelled icon-only rows).
-- Keep **terminology consistent** (OptionWise, options, warrants, vesting, companies, advisors, Sweden) so generated summaries stay aligned with your positioning.
-- Optional but valuable when the site is public: add an **`/llms.txt`** (or equivalent) at the site root with a short factual summary, official links, and contact—only if you maintain it. Do not duplicate legal claims there beyond what the homepage already states.
-
-## 23. Quality Checklist
+## 22. Quality Checklist
 
 Before shipping the homepage, check:
 
@@ -754,5 +731,3 @@ Before shipping the homepage, check:
 - Does the page feel trustworthy enough for HR, finance, and advisors?
 - Does the mobile layout still make the product understandable?
 - Does it look like a real product, not a generic AI-generated landing page?
-- **SEO:** Do `title`, meta description, and heading hierarchy match the real page content and target queries?
-- **AI-friendly:** Is the core product story still clear if images are ignored and only headings and body text are read?

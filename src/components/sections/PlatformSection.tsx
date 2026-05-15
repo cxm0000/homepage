@@ -1,5 +1,4 @@
 import { Container } from '../ui/Container';
-import { SectionHeading } from '../ui/SectionHeading';
 import { StoreBadges } from '../marketing/StoreBadges';
 import { homepageCopy } from '../../content/homepage';
 import { SECTION_IDS } from '../../content/nav';
@@ -16,7 +15,7 @@ const previewByCardId = {
 } as const;
 
 export function PlatformSection() {
-  const { label, title, cards } = homepageCopy.platform;
+  const { cards } = homepageCopy.audience;
 
   return (
     <section
@@ -25,35 +24,47 @@ export function PlatformSection() {
       aria-labelledby={`${SECTION_IDS.platform}-heading`}
     >
       <Container>
-        <SectionHeading id={`${SECTION_IDS.platform}-heading`} label={label} title={title} />
-        <div className="mt-14 grid gap-8 lg:grid-cols-3">
-          {cards.map(({ id, title: cardTitle, body, footerLink }) => {
-            const Preview = previewByCardId[id];
-            const isEmployeeCard = id === SECTION_IDS.employeeApp;
+        <h2 id={`${SECTION_IDS.platform}-heading`} className="sr-only">
+          OptionWise for companies, employees, and advisors
+        </h2>
+        <div className="grid gap-8 lg:grid-cols-3">
+          {cards.map((card) => {
+            const Preview = previewByCardId[card.id];
+            const showStores = 'showStoreBadges' in card && card.showStoreBadges;
 
             return (
               <article
-                key={id}
-                id={id}
-                className="scroll-mt-[5.5rem] flex h-full min-h-0 flex-col overflow-hidden rounded-3xl border border-ow-border bg-ow-surface-muted/40 shadow-card"
+                key={card.id}
+                id={card.id}
+                className="scroll-mt-[5.5rem] flex h-full min-h-0 flex-col overflow-hidden rounded-3xl border border-ow-border bg-ow-surface shadow-card"
               >
-                <div className="flex h-64 shrink-0 flex-col overflow-hidden border-b border-ow-border bg-ow-surface p-5 sm:h-72 lg:h-80">
+                <div className="flex h-64 shrink-0 flex-col overflow-hidden border-b border-ow-border bg-ow-surface-muted/30 p-5 sm:h-72 lg:h-80">
                   <div className="min-h-0 flex-1">
                     <Preview />
                   </div>
                 </div>
                 <div className="flex min-h-0 flex-1 flex-col p-6">
-                  <h3 className="text-xl font-bold text-ow-text">{cardTitle}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ow-text-muted">{body}</p>
-                  <div className={isEmployeeCard ? 'mt-6 space-y-4' : 'mt-6'}>
+                  <p className="text-xs font-semibold uppercase tracking-[0.1em] text-ow-primary">{card.label}</p>
+                  <h3 className="mt-2 text-xl font-bold text-ow-text">{card.title}</h3>
+                  <ul className="mt-4 flex-1 space-y-2.5">
+                    {card.features.map((feature) => (
+                      <li
+                        key={feature}
+                        className="border-l-2 border-ow-primary-soft pl-3 text-sm leading-snug text-ow-text-muted"
+                      >
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className={showStores ? 'mt-6 space-y-4' : 'mt-6'}>
                     <a
-                      href={footerLink.href}
+                      href={card.footerLink.href}
                       className="inline-flex items-center gap-1 text-sm font-semibold text-ow-primary hover:text-ow-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2 rounded"
                     >
-                      {footerLink.label}
+                      {card.footerLink.label}
                       <span aria-hidden>→</span>
                     </a>
-                    {isEmployeeCard ? <StoreBadges variant="compact" /> : null}
+                    {showStores ? <StoreBadges variant="compact" /> : null}
                   </div>
                 </div>
               </article>

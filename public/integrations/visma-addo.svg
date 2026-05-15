@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 28" role="img" aria-label="Visma Addo">
+  <text
+    x="0"
+    y="22"
+    fill="#D71920"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="22"
+    font-weight="700"
+    letter-spacing="-0.02em"
+  >
+    Visma
+  </text>
+  <text
+    x="62"
+    y="22"
+    fill="#2C2C2C"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="22"
+    font-weight="600"
+    letter-spacing="-0.02em"
+  >
+    Addo
+  </text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 28" role="img" aria-label="Adobe Acrobat Sign">
+  <path fill="#EB1000" d="M4 4h9.2l5.4 20H13.6L12 16.4H5.6L4 24H0L4 4Zm5.2 9.2 2.4-8.4h.1l2.4 8.4H9.2Z" />
+  <text
+    x="22"
+    y="21"
+    fill="#2C2C2C"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="15"
+    font-weight="600"
+    letter-spacing="-0.01em"
+  >
+    Acrobat Sign
+  </text>
+</svg>

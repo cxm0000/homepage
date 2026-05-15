@@ -2,11 +2,11 @@ import { Button } from '../ui/Button';
 import { Container } from '../ui/Container';
 import { homepageCopy } from '../../content/homepage';
 import { SECTION_IDS } from '../../content/nav';
-import { CONTACT_EMAIL, resolveBookDemoActionUrl } from '../../content/site';
+import { resolveBookDemoActionUrl } from '../../content/site';
 
 export function FinalCtaSection() {
   const bookDemoActionUrl = resolveBookDemoActionUrl();
-  const { title, body, primaryCta, emailLeadIn } = homepageCopy.finalCta;
+  const { title, body, primaryCta, secondaryCta, secondaryCtaHref } = homepageCopy.finalCta;
 
   return (
     <section
@@ -23,19 +23,18 @@ export function FinalCtaSection() {
             {title}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg">{body}</p>
-          <div className="mt-10 flex flex-col items-center gap-4">
-            <Button href={bookDemoActionUrl} variant="onDark" className="w-full max-w-xs justify-center sm:w-auto">
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+            <Button href={bookDemoActionUrl} variant="onDark" className="w-full max-w-xs justify-center gap-2 sm:w-auto">
               {primaryCta}
+              <span aria-hidden>→</span>
             </Button>
-            <p className="text-sm text-white/95">
-              {emailLeadIn}{' '}
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="font-semibold underline decoration-white/50 underline-offset-4 hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ow-primary-dark rounded"
-              >
-                {CONTACT_EMAIL}
-              </a>
-            </p>
+            <Button
+              href={secondaryCtaHref}
+              variant="onDarkOutline"
+              className="w-full max-w-xs justify-center sm:w-auto"
+            >
+              {secondaryCta}
+            </Button>
           </div>
         </div>
       </Container>

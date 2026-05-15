@@ -2,13 +2,11 @@ import { SeoHead } from './components/SeoHead';
 import { SeoJsonLd } from './components/SeoJsonLd';
 import { SiteFooter } from './components/layout/SiteFooter';
 import { SiteHeader } from './components/layout/SiteHeader';
-import { ChallengeSection } from './components/sections/ChallengeSection';
 import { FinalCtaSection } from './components/sections/FinalCtaSection';
 import { HeroSection } from './components/sections/HeroSection';
+import { IntegrationsSection } from './components/sections/IntegrationsSection';
 import { PlatformSection } from './components/sections/PlatformSection';
-import { SecuritySection } from './components/sections/SecuritySection';
-import { TrustPositioningSection } from './components/sections/TrustPositioningSection';
-import { ValueSection } from './components/sections/ValueSection';
+import { WorkflowSection } from './components/sections/WorkflowSection';
 
 export function App() {
   return (
@@ -27,11 +25,9 @@ export function App() {
 
         <main id="main" className="flex-1">
           <HeroSection />
-          <TrustPositioningSection />
-          <ChallengeSection />
+          <WorkflowSection />
           <PlatformSection />
-          <ValueSection />
-          <SecuritySection />
+          <IntegrationsSection />
           <FinalCtaSection />
         </main>
 

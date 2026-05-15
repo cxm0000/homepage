@@ -3,6 +3,7 @@ import { Button } from '../ui/Button';
 import { Container } from '../ui/Container';
 import { cn } from '../../lib/cn';
 import { headerNavLinks, homeUrl } from '../../content/links';
+import { appIconSrc } from '../../content/brand';
 import { resolveBookDemoUrl, resolveB2BAppUrl } from '../../content/site';
 
 const navLinkClass =
@@ -39,9 +40,13 @@ export function SiteHeader() {
           href={homeUrl()}
           className="flex min-w-0 shrink-0 items-center gap-2 rounded-lg text-ow-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2"
         >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ow-primary text-sm font-bold text-white">
-            OW
-          </span>
+          <img
+            src={appIconSrc}
+            alt=""
+            width={36}
+            height={36}
+            className="h-9 w-9 shrink-0 rounded-xl object-cover shadow-sm"
+          />
           <span className="truncate text-lg font-bold tracking-tight">OptionWise</span>
         </a>
 

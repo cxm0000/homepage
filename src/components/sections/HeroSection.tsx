@@ -4,9 +4,42 @@ import { HeroDashboardImage } from '../marketing/HeroDashboardImage';
 import { homepageCopy } from '../../content/homepage';
 import { resolveBookDemoUrl } from '../../content/site';
 
+function TrustCheck() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden className="shrink-0 text-ow-primary">
+      <circle cx="8" cy="8" r="8" className="fill-ow-primary-soft" />
+      <path
+        d="M5 8.2 7 10.2 11 6.2"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function PlayIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden className="shrink-0">
+      <circle cx="9" cy="9" r="8" stroke="currentColor" strokeWidth="1.25" />
+      <path d="M7.25 6.5v5l4.5-2.5-4.5-2.5z" fill="currentColor" />
+    </svg>
+  );
+}
+
 export function HeroSection() {
   const bookDemoUrl = resolveBookDemoUrl();
-  const { label, title, body, primaryCta, secondaryCta, secondaryCtaHref, trustPoints } = homepageCopy.hero;
+  const {
+    label,
+    title,
+    titleAccent,
+    body,
+    primaryCta,
+    secondaryCta,
+    secondaryCtaHref,
+    trustPoints,
+  } = homepageCopy.hero;
 
   return (
     <section
@@ -21,23 +54,28 @@ export function HeroSection() {
               id="hero-heading"
               className="mt-4 text-[2.375rem] font-bold leading-[1.08] tracking-tight text-ow-text sm:text-5xl lg:text-[3.5rem] lg:leading-[1.06]"
             >
-              {title}
+              {title}{' '}
+              <span className="text-ow-primary">{titleAccent}</span>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-ow-text-muted sm:text-xl">{body}</p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <Button href={bookDemoUrl} variant="primary" className="w-full justify-center sm:w-auto">
+              <Button href={bookDemoUrl} variant="primary" className="w-full justify-center gap-2 sm:w-auto">
                 {primaryCta}
+                <span aria-hidden>→</span>
               </Button>
-              <Button href={secondaryCtaHref} variant="secondary" className="w-full justify-center sm:w-auto">
+              <Button
+                href={secondaryCtaHref}
+                variant="secondary"
+                className="w-full justify-center gap-2 sm:w-auto"
+              >
+                <PlayIcon />
                 {secondaryCta}
               </Button>
             </div>
-            <ul
-              className="mt-10 m-0 grid list-none grid-cols-1 divide-y divide-ow-border p-0 text-left text-sm font-medium leading-snug text-ow-text-muted sm:grid-cols-3 sm:divide-x sm:divide-y-0"
-              aria-label="Trust highlights"
-            >
+            <ul className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-8" aria-label="Trust highlights">
               {trustPoints.map((point) => (
-                <li key={point} className="py-3 sm:px-4 sm:py-4 md:px-6">
+                <li key={point} className="flex items-center gap-2 text-sm font-medium text-ow-text-muted">
+                  <TrustCheck />
                   {point}
                 </li>
               ))}

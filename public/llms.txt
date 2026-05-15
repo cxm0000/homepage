@@ -1,6 +1,6 @@
 # OptionWise (homepage)
 
-OptionWise is a B2B platform for companies and equity advisors to manage employee stock option and warrant programmes in Sweden. It reduces manual administration and improves communication. A free employee companion app helps participants understand grants, vesting, and key dates.
+OptionWise helps companies and advisors manage employee participation in stock option and warrant programs—invite, generate contracts, coordinate e-signing, and give employees a mobile app to follow vesting and value.
 
 Publisher: TangCai Invest AB (brand: OptionWise).
 Contact: info@tangcai.se
@@ -9,15 +9,16 @@ Contact: info@tangcai.se
 
 - Book a demo: use the "Book a demo" control on the site (mailto or calendar URL depending on deployment).
 - Log in: https://optionwise.se (override with `VITE_B2B_APP_URL` at build time).
-- Employee app (same listings as OptionWiseB2BPlatform email templates): App Store `https://apps.apple.com/se/app/optionwise/id6747363629?l=en-GB`, Google Play `https://play.google.com/store/apps/details?id=com.optionwise.app`.
+- Employee app: App Store `https://apps.apple.com/se/app/optionwise/id6747363629?l=en-GB`, Google Play `https://play.google.com/store/apps/details?id=com.optionwise.app`.
 
 ## In-page sections (anchors)
 
-- #platform — platform overview for companies, employees, and advisors
-- #challenge — problem / "The challenge"
+- #workflow — invite, interest, grant, contract and sign, follow
+- #platform — audience cards for companies, employees, and advisors
 - #for-companies — companies card
 - #employee-app — employee app card
 - #for-advisors — advisors card
+- #integrations — e-signing tool partners
 - #demo — final call-to-action (Book a demo)
 - #contact — contact / email block in the footer
 

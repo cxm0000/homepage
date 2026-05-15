@@ -1,119 +1,110 @@
 import { SECTION_IDS, hash } from './nav';
 
-/** Visible homepage copy — aligned with docs/optionwise_homepage_design_guidance.md */
+/** Visible homepage copy — aligned with product homepage mockup */
 export const homepageCopy = {
   hero: {
-    label: 'Employee stock options. Made clear.',
-    title: 'A clearer way to manage employee stock option programs',
-    body: 'OptionWise helps companies, advisors, and employees manage option and warrant programs, follow value over time, and reduce administration.',
+    label: 'Employee option programs, from invitation to vesting',
+    title: 'Run option programs.',
+    titleAccent: 'Less admin. More value.',
+    body: 'OptionWise helps companies and advisors manage employee participation, generate contracts, coordinate e-signing, and give employees a mobile app to follow their options.',
     primaryCta: 'Book a demo',
-    secondaryCta: 'See the employee app',
-    secondaryCtaHref: hash(SECTION_IDS.employeeApp),
+    secondaryCta: 'See how it works',
+    secondaryCtaHref: hash(SECTION_IDS.workflow),
     trustPoints: [
       'Built for Swedish companies',
-      'Secure and compliant by design',
-      'Advisor-friendly workflows',
+      'Secure & compliant by design',
+      'Loved by companies and employees',
     ] as const,
   },
-  trustPositioning: {
-    title: 'Built for Swedish growth companies, listed companies, and equity advisors',
-  },
-  challenge: {
-    label: 'The challenge',
-    title: 'Option programs are valuable. But often hard to manage.',
-    description:
-      'Scattered data, manual work, and unclear communication make it difficult for companies and employees to stay updated and make informed decisions.',
-    blocks: [
+  workflow: {
+    label: 'One workflow. Every step.',
+    steps: [
       {
-        title: 'Manual and time-consuming',
-        body: 'Spreadsheets and emails create extra work and increase the risk of errors.',
+        title: 'Invite',
+        body: 'Invite employees to the program with a clear, guided start.',
       },
       {
-        title: 'Unclear for employees',
-        body: 'Employees struggle to understand their options, vesting, and potential value.',
+        title: 'Interest',
+        body: 'Employees confirm participation and understand the offer before you proceed.',
       },
       {
-        title: 'Hard to get a full overview',
-        body: 'Important information is scattered across systems, documents, and advisors.',
+        title: 'Grant',
+        body: 'Record grants and allocations with program data kept in one place.',
       },
       {
-        title: 'Difficult to communicate',
-        body: 'Explaining programs, changes, and value takes time and often lacks consistency.',
+        title: 'Contract and sign',
+        body: 'Generate individual contracts and coordinate signing through your e-signing provider.',
+      },
+      {
+        title: 'Follow',
+        body: 'Employees follow vesting and value in the app. You keep full overview.',
       },
     ] as const,
   },
-  platform: {
-    label: 'The OptionWise platform',
-    title: 'Everything you need in one platform',
+  audience: {
     cards: [
       {
         id: SECTION_IDS.forCompanies,
-        title: 'For companies',
-        body: 'Manage programs, employees, vesting, documents, and reports in one secure place.',
+        label: 'For companies',
+        title: 'Everything in one place',
+        features: [
+          'Program & participant management',
+          'Automatic contract generation',
+          'E-signing integrations',
+          'Vesting & value overview',
+          'Document and signing status',
+          'Reports for HR and finance',
+        ],
         footerLink: {
-          label: 'Explore for companies',
+          label: 'Explore platform',
           href: hash(SECTION_IDS.forCompanies),
         },
       },
       {
         id: SECTION_IDS.employeeApp,
-        title: 'For employees',
-        body: 'A simple mobile app that shows value, vesting, key dates, and important documents.',
+        label: 'For employees',
+        title: 'Your options. Always with you.',
+        features: [
+          'Complete participation flow',
+          'Sign documents securely',
+          'Follow vesting progress',
+          'See potential value over time',
+          'Key dates and notifications',
+          'Access agreements when you need them',
+        ],
         footerLink: {
-          label: 'See the employee app',
+          label: 'See the app',
           href: hash(SECTION_IDS.employeeApp),
         },
+        showStoreBadges: true,
       },
       {
         id: SECTION_IDS.forAdvisors,
-        title: 'For advisors',
-        body: 'Support your clients more efficiently with clear overviews and professional reporting.',
+        label: 'For advisors',
+        title: 'Support more clients efficiently',
+        features: [
+          'Multi-client overview',
+          'Structured data & reporting',
+          'Document & signing status',
+          'Professional client communication',
+          'Less manual follow-up',
+          'Scalable advisor workflows',
+        ],
         footerLink: {
-          label: 'Explore for advisors',
+          label: 'Explore advisor tools',
           href: hash(SECTION_IDS.forAdvisors),
         },
       },
     ] as const,
   },
-  value: {
-    label: 'Why OptionWise',
-    title: 'Less administration. Clearer communication.',
-    description:
-      'One platform for program data, employee-facing explanations, and advisor-ready reporting—so option and warrant programmes stay organised end to end.',
-    blocks: [
-      {
-        title: 'One source of truth',
-        body: 'Programs, grants, vesting schedules, and documents stay connected—so HR and finance are not reconciling files and inboxes.',
-      },
-      {
-        title: 'Employees stay informed',
-        body: 'Participants see vesting, potential value, and key dates in plain language, which cuts down on repeated questions every quarter.',
-      },
-      {
-        title: 'Advisor-ready reporting',
-        body: 'Structured client overviews and exportable reports help advisors support more companies without duplicating manual work.',
-      },
-      {
-        title: 'Fewer manual touchpoints',
-        body: 'Status updates, eligibility changes, and reporting workflows reduce the spreadsheet-and-email overhead that slows teams down.',
-      },
-    ] as const,
-  },
-  security: {
-    label: 'Security & compliance',
-    title: 'Designed for sensitive equity data',
-    description:
-      'Option programmes involve personal and financial information. OptionWise is built with access control, clear roles, and data handling suited to Swedish companies and their advisors.',
-    points: [
-      'Role-based access for company administrators and advisors',
-      'Secure storage for programme documents and agreements',
-      'Clear separation between company, advisor, and employee views',
-    ] as const,
+  integrations: {
+    label: 'Works with your existing signing tools',
   },
   finalCta: {
-    title: 'Ready to simplify your option program management?',
-    body: 'Book a demo and see how OptionWise can help your company, employees, and advisors.',
+    title: 'Ready to simplify your next option program?',
+    body: 'Book a demo and see how OptionWise can help your team save time and create a better employee experience.',
     primaryCta: 'Book a demo',
-    emailLeadIn: 'or email us at',
+    secondaryCta: 'Contact us',
+    secondaryCtaHref: hash(SECTION_IDS.contact),
   },
 } as const;

@@ -21,6 +21,10 @@ const variants = {
     'inline-flex items-center justify-center rounded-xl bg-white px-[22px] py-3.5 text-base font-semibold text-ow-primary shadow-sm transition hover:bg-ow-primary-soft',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ow-primary-dark',
   ),
+  onDarkOutline: cn(
+    'inline-flex items-center justify-center rounded-xl border border-white/50 bg-transparent px-[22px] py-3.5 text-base font-semibold text-white transition hover:bg-white/10',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ow-primary-dark',
+  ),
 } as const;
 
 type Variant = keyof typeof variants;

@@ -1,6 +1,7 @@
 import { Container } from '../ui/Container';
 import { SECTION_IDS } from '../../content/nav';
-import { footerProductLinks } from '../../content/links';
+import { appIconSrc } from '../../content/brand';
+import { footerProductLinks, homeUrl } from '../../content/links';
 import { CONTACT_EMAIL, resolveLinkedInUrl } from '../../content/site';
 
 const footerLinkClass =
@@ -18,12 +19,19 @@ export function SiteFooter() {
       <Container className="py-14 sm:py-16 lg:py-20">
         <div className="grid gap-10 sm:gap-12 lg:grid-cols-12 lg:items-start lg:gap-10 xl:gap-14">
           <div className="lg:col-span-5">
-            <div className="flex items-center gap-2.5">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ow-primary text-sm font-bold text-white">
-                OW
-              </span>
+            <a
+              href={homeUrl()}
+              className="inline-flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ow-primary focus-visible:ring-offset-2"
+            >
+              <img
+                src={appIconSrc}
+                alt=""
+                width={40}
+                height={40}
+                className="h-10 w-10 shrink-0 rounded-xl object-cover shadow-sm"
+              />
               <span className="text-lg font-bold tracking-tight text-ow-text">OptionWise</span>
-            </div>
+            </a>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-ow-text-muted">
               OptionWise helps companies, advisors, and employees manage option and warrant programmes with less
               administration and clearer communication.
